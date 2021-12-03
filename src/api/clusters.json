@@ -1,0 +1,98 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": 1,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            60.4,
+                            58
+                        ],
+                        [
+                            60.4,
+                            58.1
+                        ],
+                        [
+                            60.7,
+                            58.1
+                        ],
+                        [
+                            60.7,
+                            58
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 1,
+                "id": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 3,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            60.4,
+                            58.2
+                        ],
+                        [
+                            60.4,
+                            58.3
+                        ],
+                        [
+                            60.7,
+                            58.3
+                        ],
+                        [
+                            60.7,
+                            58.2
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 5,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            60.4,
+                            58.4
+                        ],
+                        [
+                            60.4,
+                            58.5
+                        ],
+                        [
+                            60.7,
+                            58.5
+                        ],
+                        [
+                            60.7,
+                            58.4
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 3,
+                "id": 5
+            }
+        }
+    ]
+}

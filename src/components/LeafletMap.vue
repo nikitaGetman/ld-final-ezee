@@ -9,7 +9,8 @@
 <script>
 import 'leaflet-layervisibility';
 import MapLegend from '@/components/MapLegend.vue';
-import { getLineColorByVoltage } from '@/utils/common';
+import regionsData from '@/api/regions.json';
+import { getLineColorByVoltage, getRegionColorByRating, generateRegionsManager } from '@/utils/common';
 import apiService from '@/services/api';
 
 // Plugins
@@ -35,6 +36,11 @@ export default {
       map: null,
       linesManager: null,
       regionsManager: null,
+      regionRatingManager: null,
+      singleRegionManager: null,
+      incidentsManager: null,
+      clusterManager: null,
+      pathManager: null,
 
       linesData: null,
 
@@ -49,10 +55,18 @@ export default {
     this.initMap();
     this.$bus.$on('panToRegion', this.selectRegion);
     this.$bus.$on('showIncidents', this.setupIncidents);
+    this.$bus.$on('showClusters', this.setupClusters);
+    this.$bus.$on('panToIncident', this.panToIncident);
+    this.$bus.$on('createPath', this.createPath);
+    this.$bus.$on('showRegionsRating', this.showRegionRating);
   },
   beforeDestroy() {
     this.$bus.$off('panToRegion', this.selectRegion);
     this.$bus.$off('showIncidents', this.setupIncidents);
+    this.$bus.$off('showClusters', this.setupClusters);
+    this.$bus.$off('panToIncident', this.panToIncident);
+    this.$bus.$off('createPath', this.createPath);
+    this.$bus.$off('showRegionsRating', this.showRegionRating);
   },
   methods: {
     updateParams({ key, value }) {
@@ -74,6 +88,11 @@ export default {
       } else {
         this.linesManager.hide();
       }
+    },
+    toggleHeatmap() {
+      // HEATMAP plugins
+      // https://github.com/Leaflet/Leaflet.heat
+      // https://github.com/domoritz/leaflet-maskcanvas
     },
     toggleRegions() {
       if (!this.regionsManager) return;
@@ -112,13 +131,20 @@ export default {
         },
       });
 
-      this.map.flyToBounds(this.singleRegionManager.getBounds(), {
-        maxZoom: 7,
-      });
+      this.map.flyToBounds(this.singleRegionManager.getBounds(), { maxZoom: 7 });
 
       setTimeout(() => {
         this.singleRegionManager.addTo(this.map);
       }, 1000);
+    },
+    openIncidentInfo(incidentId) {
+      this.$bus.$emit('openIncidentInfo', incidentId);
+    },
+
+    panToIncident(feature) {
+      const { coordinates } = feature.geometry;
+      this.map.flyToBounds(L.latLngBounds(coordinates, coordinates), { maxZoom: 10 });
+      this.openIncidentInfo(feature.properties.id);
     },
 
     initMap() {
@@ -140,11 +166,6 @@ export default {
       this.toggleRegions();
     },
     showLines() {
-      if (this.linesManager) {
-        this.updateParams({ key: 'lines', value: true });
-        return;
-      }
-
       const promise = this.linesData ? Promise.resolve(this.linesData) : apiService.fetchLines();
 
       promise.then(linesData => {
@@ -184,7 +205,26 @@ export default {
         this.toggleLines();
       });
     },
-    showRegions() {},
+    showRegions() {
+      this.regionsManager = generateRegionsManager(
+        regionsData,
+        {
+          fillColor: '#50749a',
+          weight: 2,
+          opacity: 0.5,
+          color: 'white',
+          dashArray: '3',
+          fillOpacity: 0.2,
+        },
+        null,
+        L,
+        this.map
+      )
+        .bringToBack()
+        .addTo(this.map);
+
+      this.toggleRegions();
+    },
     setupIncidents(incidents) {
       this.showLines();
       this.resetLayers(['linesManager', 'singleRegionManager']);
@@ -194,10 +234,7 @@ export default {
           html: `<i class="v-icon notranslate mdi mdi-alert-circle theme--dark"></i>`,
           className: `map-marker map-marker--level-${incident.properties.dangerLevel}`,
         });
-        const marker = L.marker(L.latLng(incident.geometry.coordinates), {
-          icon,
-          riseOnHover: true,
-        }).on({
+        const marker = L.marker(L.latLng(incident.geometry.coordinates), { icon, riseOnHover: true }).on({
           click: () => this.panToIncident(incident),
         });
 
@@ -207,6 +244,43 @@ export default {
       this.incidentsManager = L.layerGroup(markers);
       this.map.addLayer(this.incidentsManager);
     },
+    setupClusters(clusters) {
+      this.resetLayers(['linesManager', 'incidentsManager', 'singleRegionManager']);
+
+      this.clusterManager = L.geoJSON(clusters, {
+        style: { color: '#F44336', weight: 2, dashArray: '3', fillColor: '#F44336', fillOpacity: 0.3 },
+      }).addTo(this.map);
+
+      this.map.flyToBounds(this.clusterManager.getBounds(), { maxZoom: 9 });
+    },
+    createPath({ paths }) {
+      this.resetLayers(['singleRegionManager', 'clusterManager', 'incidentsManager']);
+
+      const { points, snapped_waypoints: snappedWaypoints } = paths[0];
+      const path = L.geoJSON(points, { style: { color: '#89c769', weight: 8, opacity: 1 } });
+      const startMarker = L.marker(L.latLng(snappedWaypoints.coordinates[0].reverse()));
+      const endMarker = L.marker(L.latLng(snappedWaypoints.coordinates[1].reverse()));
+      this.pathManager = L.layerGroup([path, startMarker, endMarker]);
+
+      this.map.addLayer(this.pathManager);
+      this.map.flyToBounds(path.getBounds());
+    },
+
+    showRegionRating(rating) {
+      this.resetLayers();
+
+      const ratingMap = rating.reduce((acc, item) => ({ ...acc, [item.iso]: item }), {});
+      const onEachFeature = (feature, layer) => {
+        const color = getRegionColorByRating(ratingMap[feature.properties.iso].rating);
+        layer.setStyle({ fillColor: color, fillOpacity: 0.2, weight: 2, color });
+      };
+
+      this.regionRatingManager = generateRegionsManager(regionsData, null, onEachFeature, L, this.map);
+
+      this.map.addLayer(this.regionRatingManager);
+      this.map.flyToBounds(this.regionRatingManager.getBounds(), { paddingTopLeft: [-1000, -100] });
+    },
+
     resetLayers(except = []) {
       if (!except.includes('linesManager') && this.linesManager) {
         this.linesManager.remove();

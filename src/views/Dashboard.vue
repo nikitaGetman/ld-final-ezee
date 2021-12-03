@@ -6,7 +6,9 @@
       <div class="dashboard__view">
         <the-menu />
         <leaflet-map />
+        <the-bottom-sheet />
       </div>
+      <the-sidebar />
     </v-main>
   </v-app>
 </template>
@@ -15,10 +17,12 @@
 import TheHeader from '@/components/TheHeader.vue';
 import LeafletMap from '@/components/LeafletMap.vue';
 import TheMenu from '@/components/TheMenu.vue';
+import TheBottomSheet from '@/components/TheBottomSheet.vue';
+import TheSidebar from '@/components/TheSidebar.vue';
 
 export default {
   name: 'Dashboard',
-  components: { TheHeader, LeafletMap, TheMenu },
+  components: { TheHeader, LeafletMap, TheMenu, TheBottomSheet, TheSidebar },
   data() {
     return {};
   },
