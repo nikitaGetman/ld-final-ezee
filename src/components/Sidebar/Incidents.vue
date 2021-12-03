@@ -44,7 +44,7 @@
             </v-col>
 
             <v-col cols="3">
-              <span class="incident__label">Мощность:</span>
+              <span class="incident__label">Напряжение:</span>
             </v-col>
             <v-col cols="9">
               <span>{{ Math.round(parseInt(item.properties.voltage, 10) / 1000) }} кВ</span>
@@ -61,7 +61,7 @@
               <span class="incident__label">Округ:</span>
             </v-col>
             <v-col cols="9">
-              <span>Свердловская область, городской округ Красноуральск</span>
+              <span>{{ item.properties.address }}</span>
             </v-col>
           </v-row>
         </div>
@@ -74,6 +74,9 @@
 import BaseLoader from '@/components/BaseLoader.vue';
 import RISK_LEVELS from '@/constants/risks';
 import apiService from '@/services/api';
+
+import { loadYmap } from 'vue-yandex-maps';
+import config from '@/constants/yandex-map';
 
 export default {
   name: 'Incidents',
@@ -110,6 +113,17 @@ export default {
       .fetchIncidents()
       .then(incidents => {
         this.incidents = incidents.features;
+        return loadYmap(config);
+      })
+      .then(() =>
+        // eslint-disable-next-line
+        Promise.all(this.incidents.map(incident => ymaps.geocode(incident.geometry.coordinates, { results: 1 })))
+      )
+      .then(results => {
+        results.forEach((res, index) => {
+          const obj = res.geoObjects.get(0);
+          this.incidents[index].properties.address = obj ? res.geoObjects.get(0).properties.get('text') : '';
+        });
       })
       .finally(() => {
         this.loading = false;

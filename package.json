@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --dest backend/public",
     "build-prod": "vue-cli-service build --mode production",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "chart.js": "^3.6.1",
     "core-js": "^3.6.4",
+    "leaflet": "^1.7.1",
     "leaflet-draw": "^1.0.4",
     "leaflet-layervisibility": "*",
     "prunecluster": "^2.1.0",

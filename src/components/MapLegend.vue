@@ -19,7 +19,7 @@
         @change="updateParam('lines', $event)"
       ></v-switch>
 
-      <div class="grey--text text--darken-1 mt-4">Мощность ЛЭП:</div>
+      <div class="grey--text text--darken-1 mt-4">Напряжение ЛЭП:</div>
 
       <v-row no-gutters>
         <v-col v-for="type in lineTypes" :key="type.key" :cols="6">

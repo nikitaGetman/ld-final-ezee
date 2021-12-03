@@ -6,14 +6,14 @@
         <span class="plan__label">Площадь план:</span>
       </v-col>
       <v-col cols="8">
-        <span>{{ plan.areaTotal }}</span>
+        <span>{{ plan.areaTotal }} га</span>
       </v-col>
 
       <v-col cols="4">
         <span class="plan__label">Площадь факт:</span>
       </v-col>
       <v-col cols="8">
-        <span>{{ plan.areaDone }}</span>
+        <span>{{ plan.areaDone }} га</span>
       </v-col>
 
       <v-col cols="4">

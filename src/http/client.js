@@ -1,7 +1,8 @@
 import { create } from 'axios';
 
 const timeout = 600000;
-const axiosInstance = create({ baseURL: process.env.VUE_APP_BASE_URL || '/', timeout });
+const baseURL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:8080/api';
+const axiosInstance = create({ baseURL: process.env.VUE_APP_BASE_URL || baseURL, timeout });
 const defaultErrorInterceptor = error => Promise.reject(error);
 const defaultRequestInterceptor = config => config;
 const defaultResponseInterceptor = response => response;

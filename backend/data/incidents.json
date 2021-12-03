@@ -1,0 +1,107 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": 1,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    58.05,
+                    60.45
+                ]
+            },
+            "properties": {
+                "dangerLevel": 1,
+                "accuracy": 0.94,
+                "voltage": "500000",
+                "id": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 2,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    58.05,
+                    60.65
+                ]
+            },
+            "properties": {
+                "dangerLevel": 1,
+                "accuracy": 0.92,
+                "voltage": "500000",
+                "id": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 3,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    58.25,
+                    60.45
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "accuracy": 0.82,
+                "voltage": "220000",
+                "id": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 4,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    58.25,
+                    60.65
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "accuracy": 0.85,
+                "voltage": "220000",
+                "id": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 5,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    58.45,
+                    60.45
+                ]
+            },
+            "properties": {
+                "dangerLevel": 3,
+                "accuracy": 0.63,
+                "voltage": "110000",
+                "id": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 6,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    58.45,
+                    60.65
+                ]
+            },
+            "properties": {
+                "dangerLevel": 3,
+                "accuracy": 0.61,
+                "voltage": "220000",
+                "id": 6
+            }
+        }
+    ]
+}

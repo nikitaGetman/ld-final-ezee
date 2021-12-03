@@ -1,0 +1,38 @@
+{
+    "active": [
+        {
+            "id": 1,
+            "year": 2021,
+            "areaTotal": 142,
+            "areaDone": 35,
+            "startDate": "14 апреля 2021",
+            "endDate": "14 декабря 2021"
+        }
+    ],
+    "archive": [
+        {
+            "id": 2,
+            "year": 2020,
+            "areaTotal": 128,
+            "areaDone": 128,
+            "startDate": "14 апреля 2020",
+            "endDate": "14 декабря 2020"
+        },
+        {
+            "id": 3,
+            "year": 2019,
+            "areaTotal": 131,
+            "areaDone": 128,
+            "startDate": "14 апреля 2019",
+            "endDate": "14 декабря 2019"
+        },
+        {
+            "id": 4,
+            "year": 2018,
+            "areaTotal": 110,
+            "areaDone": 110,
+            "startDate": "14 апреля 2018",
+            "endDate": "14 декабря 2018"
+        }
+    ]
+}

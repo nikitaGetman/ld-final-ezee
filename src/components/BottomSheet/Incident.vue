@@ -19,7 +19,7 @@
 
       <div class="text-body-2">
         <span class="bottom-sheet__label">Местоположение:</span>
-        <span>Свердловская область, городской округ Красноуральск - {{ incidentCoordinates }}</span>
+        <span>{{ address }} - {{ incidentCoordinates }}</span>
       </div>
       <div class="text-body-2">
         <span class="bottom-sheet__label">Ответственный:</span>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="text-body-2">
-        <span class="bottom-sheet__label">Мощность ЛЭП:</span>
+        <span class="bottom-sheet__label">Напряжение ЛЭП:</span>
         <span>{{ parseInt(model.properties.voltage, 10) / 1000 }} кВ</span>
       </div>
 
@@ -70,11 +70,19 @@
         >
       </div>
 
-      <v-row align="start" class="mt-2" dense>
-        <v-col cols="6">
-          <div class="text-caption bottom-sheet__label">Снимок:</div>
-          <v-img src="@/assets/images/location_1.png" contain max-width="420px" />
+      <v-row v-if="model.properties.rawData" class="mt-2">
+        <v-col cols="3">
+          <div class="text-caption bottom-sheet__label">Снимок 1:</div>
+          <img :src="`data:image/jpeg;base64,${model.properties.rawData.images[0]}`" class="bottom-sheet__image" />
         </v-col>
+
+        <v-col cols="3">
+          <div class="text-caption bottom-sheet__label">Снимок 2:</div>
+          <img :src="`data:image/jpeg;base64,${model.properties.rawData.images[1]}`" class="bottom-sheet__image" />
+        </v-col>
+      </v-row>
+
+      <v-row align="start" class="mt-4" dense>
         <v-col cols="6">
           <div class="text-caption bottom-sheet__label">История (GIF):</div>
           <v-img src="@/assets/images/location_1_anim.gif" contain max-width="420px" />
@@ -103,14 +111,19 @@ import RISK_LEVELS from '@/constants/risks';
 import apiService from '@/services/api';
 import { getWidthByVoltage } from '@/utils/common';
 
+import { loadYmap } from 'vue-yandex-maps';
+import config from '@/constants/yandex-map';
+
 export default {
   name: 'BottomSheetIncident',
   components: { BaseLoader },
-  props: { id: { type: Number, required: true } },
+  props: { id: { type: [Number, String], required: true } },
   data() {
     return {
       loading: false,
       model: null,
+
+      address: null,
     };
   },
   computed: {
@@ -136,6 +149,7 @@ export default {
       },
     },
   },
+  created() {},
   methods: {
     getWidthByVoltage,
     fetch() {
@@ -144,6 +158,13 @@ export default {
         .fetchIncident(this.id)
         .then(incident => {
           this.model = incident;
+          return loadYmap(config);
+        })
+        // eslint-disable-next-line
+        .then(() => ymaps.geocode(this.model.geometry.coordinates, { results: 1 }))
+        .then(res => {
+          const obj = res.geoObjects.get(0);
+          this.address = obj ? res.geoObjects.get(0).properties.get('text') : '';
         })
         .finally(() => {
           this.loading = false;
@@ -163,6 +184,10 @@ export default {
     display: inline-block;
     width: 170px;
     color: $--semi-grey;
+  }
+
+  &__image {
+    width: 100%;
   }
 
   &__risk {
