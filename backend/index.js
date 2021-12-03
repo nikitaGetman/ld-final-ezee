@@ -3,7 +3,7 @@ function formatIncident(incident) {
   const id = incident._id;
   const { latitude, longitude, voltage } = incident;
 
-  const accuracy = Math.round(Math.random() * 50 + 50) / 100;
+  const accuracy = Math.min(Math.round((latitude * 100) % 100) + 40, 98) / 100;
 
   return {
     type: 'Feature',
@@ -22,9 +22,24 @@ function formatIncident(incident) {
   };
 }
 
+const { MongoClient, ObjectId } = require('mongodb');
+// const fs = require('fs');
+
+// const uri = 'mongodb+srv://ezee:ezee@cluster0.bngnr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// client.connect(async err => {
+//   const collection = client.db('test_database').collection('test_tickets_table');
+//   const cursor = collection.find();
+//   const incidents = await cursor.toArray();
+
+//   fs.writeFileSync('myjsonfile.json', JSON.stringify(incidents), 'utf8');
+
+//   client.close();
+// });
+
 const express = require('express');
 const cors = require('cors');
-const { MongoClient, ObjectId } = require('mongodb');
 const clustersData = require('./data/clusters.json');
 const ratingData = require('./data/regions_rating.json');
 const plansData = require('./data/plans.json');

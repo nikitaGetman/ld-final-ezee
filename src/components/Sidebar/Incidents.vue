@@ -40,7 +40,7 @@
               <span class="incident__label">Точность:</span>
             </v-col>
             <v-col cols="9">
-              <span>{{ item.properties.accuracy * 100 }}%</span>
+              <span>{{ Math.round(item.properties.accuracy * 100) }}%</span>
             </v-col>
 
             <v-col cols="3">

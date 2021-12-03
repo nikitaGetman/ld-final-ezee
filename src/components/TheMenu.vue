@@ -15,6 +15,15 @@
         <v-list-item-title>Планы</v-list-item-title>
       </v-list-item>
 
+      <v-list-item link @click="showDashboard">
+        <v-list-item-icon>
+          <v-icon>mdi-chart-pie</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>Дашборд</v-list-item-title>
+      </v-list-item>
+
+      <v-divider class="my-2"></v-divider>
+
       <v-list-item link @click="showStatistic">
         <v-list-item-icon>
           <v-icon>mdi-chart-bar</v-icon>
@@ -22,18 +31,11 @@
         <v-list-item-title>Рейтинг</v-list-item-title>
       </v-list-item>
 
-      <v-list-item link>
+      <v-list-item link @click="showReports">
         <v-list-item-icon>
-          <v-icon>mdi-account-multiple</v-icon>
+          <v-icon>mdi-table-large</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Вырубки</v-list-item-title>
-      </v-list-item>
-
-      <v-list-item link @click="showDashboard">
-        <v-list-item-icon>
-          <v-icon>mdi-chart-pie</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>Дашборд</v-list-item-title>
+        <v-list-item-title>Отчеты</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -48,6 +50,12 @@ export default {
     };
   },
   methods: {
+    hideEmblema() {
+      this.$bus.$emit('hideEmblema');
+    },
+    showEmblema() {
+      this.$bus.$emit('showEmblema');
+    },
     fadeOut() {
       this.expanded = false;
       setTimeout(() => {
@@ -58,18 +66,27 @@ export default {
       this.$bus.$emit('panToRegion', 'RU-SVE');
       this.$bus.$emit('loadIncidents');
       this.fadeOut();
-    },
-    showStatistic() {
-      this.$bus.$emit('showStatistic');
-      this.fadeOut();
+      this.showEmblema();
     },
     showDashboard() {
       this.$bus.$emit('showDashboard');
       this.fadeOut();
+      this.showEmblema();
     },
     showPLans() {
       this.$bus.$emit('showPlans');
       this.fadeOut();
+      this.showEmblema();
+    },
+    showStatistic() {
+      this.$bus.$emit('showStatistic');
+      this.fadeOut();
+      this.hideEmblema();
+    },
+    showReports() {
+      this.$bus.$emit('showReports');
+      this.fadeOut();
+      this.hideEmblema();
     },
   },
 };

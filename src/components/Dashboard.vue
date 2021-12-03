@@ -145,7 +145,7 @@ export default {
 <style lang="scss">
 .dashboard {
   position: absolute;
-  right: 100%;
+  right: 0;
   width: 100%;
   top: 0;
   height: calc(100vh - 64px);
@@ -154,12 +154,10 @@ export default {
   background-color: $--white;
   z-index: 210;
 
-  transition: right 0.5s;
-  transition-delay: 0s;
+  display: none;
 
   &--expanded {
-    transition-delay: 0.3s;
-    right: 0;
+    display: block;
   }
 
   &__actions {

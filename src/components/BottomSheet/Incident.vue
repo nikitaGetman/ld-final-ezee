@@ -52,7 +52,7 @@
 
       <div class="text-body-2">
         <span class="bottom-sheet__label">Точность:</span>
-        <span>{{ model.properties.accuracy * 100 }}%</span>
+        <span>{{ Math.round(model.properties.accuracy * 100) }}%</span>
       </div>
 
       <div class="d-flex mt-2">
