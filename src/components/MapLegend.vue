@@ -82,7 +82,7 @@ export default {
   position: absolute;
   top: 16px;
   right: 16px;
-  z-index: 100;
+  z-index: 10;
   overflow: hidden;
 
   display: flex;

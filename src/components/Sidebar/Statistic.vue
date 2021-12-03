@@ -2,7 +2,7 @@
   <div class="statistic">
     <base-loader :active="loading" />
 
-    <div class="text-h6">Статистика</div>
+    <div class="text-h6">Рейтинг</div>
     <div class="text-body-2 my-2">Рейтинг выполнения планов вырубок по регионам.</div>
 
     <v-simple-table fixed-header height="700px" class="statistic__table mt-2" dense>

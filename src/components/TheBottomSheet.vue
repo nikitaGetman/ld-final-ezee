@@ -1,12 +1,5 @@
 <template>
-  <v-bottom-sheet
-    v-model="value"
-    :retain-focus="false"
-    hide-overlay
-    persistent
-    no-click-animation
-    attach=".dashboard__view"
-  >
+  <v-bottom-sheet v-model="value" :retain-focus="false" hide-overlay persistent no-click-animation attach=".main__view">
     <v-sheet class="the-sheet pt-6 px-4" :class="{ 'the-sheet--expanded': expanded }">
       <div class="the-sheet__actions">
         <v-btn v-if="expanded" icon @click="expanded = false">
@@ -52,12 +45,16 @@ export default {
     this.$bus.$on('openIncidentInfo', this.openIncidentInfo);
     this.$bus.$on('loadIncidents', this.resetState);
     this.$bus.$on('loadClusters', this.resetState);
+    this.$bus.$on('showStatistic', this.resetState);
+    this.$bus.$on('showPlans', this.resetState);
   },
   beforeDestroy() {
     this.$bus.$off('openRegionInfo', this.openRegionInfo);
     this.$bus.$off('openIncidentInfo', this.openIncidentInfo);
     this.$bus.$off('loadIncidents', this.resetState);
     this.$bus.$off('loadClusters', this.resetState);
+    this.$bus.$off('showStatistic', this.resetState);
+    this.$bus.$off('showPlans', this.resetState);
   },
   methods: {
     openRegionInfo(regionCode) {

@@ -1,12 +1,12 @@
 <template>
-  <dashboard />
+  <main-page />
 </template>
 
 <script>
-import Dashboard from '@/views/Dashboard.vue';
+import MainPage from '@/views/Main.vue';
 
 export default {
   name: 'App',
-  components: { Dashboard },
+  components: { MainPage },
 };
 </script>

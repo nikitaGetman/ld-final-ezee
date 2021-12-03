@@ -1,14 +1,16 @@
 <template>
-  <v-app class="dashboard">
+  <v-app class="main">
     <the-header />
 
-    <v-main class="dashboard__main">
-      <div class="dashboard__view">
+    <v-main class="main__body">
+      <div class="main__view">
         <the-menu />
         <leaflet-map />
         <the-bottom-sheet />
       </div>
       <the-sidebar />
+
+      <dashboard :value.sync="isDashboardVisible" />
     </v-main>
   </v-app>
 </template>
@@ -19,19 +21,33 @@ import LeafletMap from '@/components/LeafletMap.vue';
 import TheMenu from '@/components/TheMenu.vue';
 import TheBottomSheet from '@/components/TheBottomSheet.vue';
 import TheSidebar from '@/components/TheSidebar.vue';
+import Dashboard from '@/components/Dashboard.vue';
 
 export default {
-  name: 'Dashboard',
-  components: { TheHeader, LeafletMap, TheMenu, TheBottomSheet, TheSidebar },
+  name: 'MainPage',
+  components: { Dashboard, TheHeader, LeafletMap, TheMenu, TheBottomSheet, TheSidebar },
   data() {
-    return {};
+    return {
+      isDashboardVisible: false,
+    };
+  },
+  created() {
+    this.$bus.$on('showDashboard', this.showDashboard);
+  },
+  beforeDestroy() {
+    this.$bus.$off('showDashboard', this.showDashboard);
+  },
+  methods: {
+    showDashboard() {
+      this.isDashboardVisible = true;
+    },
   },
 };
 </script>
 
 <style lang="scss">
-.dashboard {
-  &__main {
+.main {
+  &__body {
     .v-main__wrap {
       display: flex;
     }

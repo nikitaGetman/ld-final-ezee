@@ -59,6 +59,7 @@ export default {
     this.$bus.$on('panToIncident', this.panToIncident);
     this.$bus.$on('createPath', this.createPath);
     this.$bus.$on('showRegionsRating', this.showRegionRating);
+    this.$bus.$on('resetMapLayers', this.resetLayers);
   },
   beforeDestroy() {
     this.$bus.$off('panToRegion', this.selectRegion);
@@ -67,6 +68,7 @@ export default {
     this.$bus.$off('panToIncident', this.panToIncident);
     this.$bus.$off('createPath', this.createPath);
     this.$bus.$off('showRegionsRating', this.showRegionRating);
+    this.$bus.$off('resetMapLayers', this.resetLayers);
   },
   methods: {
     updateParams({ key, value }) {
@@ -95,17 +97,20 @@ export default {
       // https://github.com/domoritz/leaflet-maskcanvas
     },
     toggleRegions() {
-      if (!this.regionsManager) return;
-
       if (this.params.regions) {
+        if (!this.regionsManager) this.showRegions();
+
         if (this.singleRegionManager) {
           this.singleRegionManager.hide();
         }
         this.regionsManager.show();
       } else {
+        if (!this.regionsManager) return;
+
         if (this.singleRegionManager) {
           this.singleRegionManager.show();
         }
+
         this.regionsManager.hide();
       }
     },
@@ -126,7 +131,7 @@ export default {
           weight: 3,
           opacity: 0.8,
           dashArray: '10',
-          color: '#7a6054',
+          color: '#757575',
           fillOpacity: 0,
         },
       });

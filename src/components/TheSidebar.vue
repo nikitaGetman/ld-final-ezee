@@ -1,7 +1,7 @@
 <template>
-  <div class="sidebar" :class="{ 'sidebar--active': visible }">
+  <div class="sidebar" :class="{ 'sidebar--active': !!type }">
     <div class="sidebar__actions">
-      <v-btn icon class="ml-1" @click="visible = false">
+      <v-btn icon class="ml-1" @click="type = null">
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </div>
@@ -10,6 +10,7 @@
       <incidents v-if="type === 'incidents'" />
       <statistic v-if="type === 'statistic'" />
       <clusters v-if="type === 'clusters'" />
+      <plans v-if="type === 'plans'" />
     </v-slide-x-transition>
   </div>
 </template>
@@ -18,38 +19,40 @@
 import Incidents from '@/components/Sidebar/Incidents.vue';
 import Statistic from '@/components/Sidebar/Statistic.vue';
 import Clusters from '@/components/Sidebar/Clusters.vue';
+import Plans from '@/components/Sidebar/Plans.vue';
 
 export default {
   name: 'TheSidebar',
-  components: { Incidents, Statistic, Clusters },
+  components: { Incidents, Statistic, Clusters, Plans },
   data() {
     return {
       type: null,
-      visible: false,
     };
   },
   mounted() {
     this.$bus.$on('loadIncidents', this.loadIncidents);
     this.$bus.$on('loadClusters', this.loadClusters);
     this.$bus.$on('showStatistic', this.showStatistic);
+    this.$bus.$on('showPlans', this.showPlans);
   },
   beforeDestroy() {
     this.$bus.$off('loadIncidents', this.loadIncidents);
     this.$bus.$off('showStatistic', this.showStatistic);
     this.$bus.$off('loadClusters', this.loadClusters);
+    this.$bus.$off('showPlans', this.showPlans);
   },
   methods: {
     loadIncidents() {
-      this.visible = true;
       this.type = 'incidents';
     },
     showStatistic() {
-      this.visible = true;
       this.type = 'statistic';
     },
     loadClusters() {
-      this.visible = true;
       this.type = 'clusters';
+    },
+    showPlans() {
+      this.type = 'plans';
     },
   },
 };
@@ -62,7 +65,7 @@ export default {
   position: relative;
   overflow: hidden;
   background-color: $--white;
-  z-index: 400;
+  z-index: 90;
   transition: width 0.5s;
 
   &--active {

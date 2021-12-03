@@ -4,6 +4,7 @@ import linesData from '@/api/lines.json';
 import incidentsData from '@/api/incidents.json';
 import clustersData from '@/api/clusters.json';
 import ratingData from '@/api/regions_rating.json';
+import plansData from '@/api/plans.json';
 
 const apiService = {
   fetchIncidents() {
@@ -41,6 +42,22 @@ const apiService = {
 
   fetchLines() {
     return Promise.resolve(linesData);
+  },
+
+  fetchPlans() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(plansData);
+      }, 1500);
+    });
+  },
+
+  fetchPlan(id) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(clustersData);
+      }, 1500);
+    });
   },
 };
 

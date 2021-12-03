@@ -8,7 +8,7 @@
         <v-list-item-title>Инциденты</v-list-item-title>
       </v-list-item>
 
-      <v-list-item link>
+      <v-list-item link @click="showPLans">
         <v-list-item-icon>
           <v-icon>mdi-floor-plan</v-icon>
         </v-list-item-icon>
@@ -19,7 +19,7 @@
         <v-list-item-icon>
           <v-icon>mdi-chart-bar</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Статистика</v-list-item-title>
+        <v-list-item-title>Рейтинг</v-list-item-title>
       </v-list-item>
 
       <v-list-item link>
@@ -29,11 +29,11 @@
         <v-list-item-title>Вырубки</v-list-item-title>
       </v-list-item>
 
-      <v-list-item link>
+      <v-list-item link @click="showDashboard">
         <v-list-item-icon>
           <v-icon>mdi-chart-pie</v-icon>
         </v-list-item-icon>
-        <v-list-item-title>Показатели</v-list-item-title>
+        <v-list-item-title>Дашборд</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -61,6 +61,14 @@ export default {
     },
     showStatistic() {
       this.$bus.$emit('showStatistic');
+      this.fadeOut();
+    },
+    showDashboard() {
+      this.$bus.$emit('showDashboard');
+      this.fadeOut();
+    },
+    showPLans() {
+      this.$bus.$emit('showPlans');
       this.fadeOut();
     },
   },
