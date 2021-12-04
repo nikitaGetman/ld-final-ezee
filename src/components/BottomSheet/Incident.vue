@@ -38,7 +38,7 @@
 
       <div class="text-body-2">
         <span class="bottom-sheet__label">Зарастание просеки:</span>
-        <span>3 м</span>
+        <span>{{ model.properties.rawData.area }} м2</span>
       </div>
 
       <div class="text-body-2">

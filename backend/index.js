@@ -3,7 +3,7 @@ function formatIncident(incident) {
   const id = incident._id;
   const { latitude, longitude, voltage } = incident;
 
-  const accuracy = Math.min(Math.round((latitude * 100) % 100) + 40, 98) / 100;
+  const accuracy = Math.min(Math.round((latitude * 100) % 100) + 80, 98) / 100;
 
   return {
     type: 'Feature',
@@ -29,11 +29,11 @@ const { MongoClient, ObjectId } = require('mongodb');
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // client.connect(async err => {
-//   const collection = client.db('test_database').collection('test_tickets_table');
+//   const collection = client.db('test_database').collection('test_tickets_table2');
 //   const cursor = collection.find();
 //   const incidents = await cursor.toArray();
 
-//   fs.writeFileSync('myjsonfile.json', JSON.stringify(incidents), 'utf8');
+//   fs.writeFileSync('dump2.json', JSON.stringify(incidents), 'utf8');
 
 //   client.close();
 // });
@@ -55,7 +55,7 @@ app.get('/api/incidents', (req, res) => {
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
   client.connect(async () => {
-    const collection = client.db('test_database').collection('test_tickets_table');
+    const collection = client.db('test_database').collection('test_tickets_table2');
     const cursor = collection.find();
     const incidents = await cursor.toArray();
 
@@ -76,7 +76,7 @@ app.get('/api/incident', (req, res) => {
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
   client.connect(async () => {
-    const collection = client.db('test_database').collection('test_tickets_table');
+    const collection = client.db('test_database').collection('test_tickets_table2');
     const incident = await collection.findOne({ _id: ObjectId(id) });
 
     const feature = formatIncident(incident);
