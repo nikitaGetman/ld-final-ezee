@@ -250,10 +250,10 @@ export default {
       this.map.addLayer(this.incidentsManager);
     },
     setupClusters(clusters) {
-      this.resetLayers(['linesManager', 'incidentsManager', 'singleRegionManager']);
+      this.resetLayers(['linesManager', 'singleRegionManager']);
 
       this.clusterManager = L.geoJSON(clusters, {
-        style: { color: '#F44336', weight: 2, dashArray: '3', fillColor: '#F44336', fillOpacity: 0.3 },
+        style: { color: '#F44336', weight: 4, dashArray: '3', fillColor: '#F44336', fillOpacity: 0.3 },
       }).addTo(this.map);
 
       this.map.flyToBounds(this.clusterManager.getBounds(), { maxZoom: 9 });

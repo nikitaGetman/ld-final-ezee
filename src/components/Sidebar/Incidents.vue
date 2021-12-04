@@ -134,10 +134,7 @@ export default {
       return RISK_LEVELS.find(r => r.value === item.properties.dangerLevel);
     },
     selectClusters() {
-      this.filter = [];
-      this.$nextTick(() => {
-        this.$bus.$emit('loadClusters');
-      });
+      this.$bus.$emit('loadClusters');
     },
     panToIncident(incident) {
       this.$bus.$emit('panToIncident', incident);

@@ -1,0 +1,412 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": 0,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            60.359691,
+                            56.528877
+                        ],
+                        [
+                            60.421553,
+                            56.591992
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 0
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 1,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            59.857753,
+                            58.660737
+                        ],
+                        [
+                            59.859943,
+                            58.635023
+                        ],
+                        [
+                            59.875606,
+                            58.64718
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 2,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            60.478734,
+                            57.000913
+                        ],
+                        [
+                            60.486824,
+                            56.968304
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 3,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.147751,
+                            56.372529
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 4,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.160754,
+                            56.372975
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 5,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.164288,
+                            56.373088
+                        ],
+                        [
+                            62.167257,
+                            56.373193
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 6,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.170094,
+                            56.374184
+                        ],
+                        [
+                            62.172592,
+                            56.375043
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 6
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 7,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.178155,
+                            56.376983
+                        ],
+                        [
+                            62.18098,
+                            56.377959
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 7
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 8,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.183689,
+                            56.378852
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 8
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 9,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.192358,
+                            56.38181
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 9
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 10,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.195072,
+                            56.381039
+                        ],
+                        [
+                            62.197759,
+                            56.380245
+                        ],
+                        [
+                            62.200446,
+                            56.379451
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 10
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 11,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.237628,
+                            56.368456
+                        ],
+                        [
+                            62.203143,
+                            56.37864
+                        ],
+                        [
+                            62.240654,
+                            56.367554
+                        ],
+                        [
+                            62.228778,
+                            56.371056
+                        ],
+                        [
+                            62.210068,
+                            56.37659
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 11
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 12,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.283865,
+                            56.36384
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 12
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 13,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.311883,
+                            56.361894
+                        ],
+                        [
+                            62.305568,
+                            56.362328
+                        ],
+                        [
+                            62.314863,
+                            56.361687
+                        ],
+                        [
+                            62.308754,
+                            56.362132
+                        ],
+                        [
+                            62.30292,
+                            56.362517
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 13
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 14,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.353783,
+                            56.358933
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 14
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 15,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.356875,
+                            56.358719
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 15
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 16,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            62.377152,
+                            56.35731
+                        ],
+                        [
+                            62.361041,
+                            56.358413
+                        ],
+                        [
+                            62.433879,
+                            56.353226
+                        ],
+                        [
+                            62.370678,
+                            56.35776
+                        ],
+                        [
+                            62.364085,
+                            56.358217
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "dangerLevel": 2,
+                "id": 16
+            }
+        }
+    ]
+}

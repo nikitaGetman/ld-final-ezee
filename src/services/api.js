@@ -3,6 +3,7 @@ import client from '@/http/client';
 import linesData from '@/api/lines.json';
 import incidentsData from '@/api/incidents.json';
 import clustersData from '@/api/clusters.json';
+import clustersNewData from '@/api/clusters_raw.json';
 import ratingData from '@/api/regions_rating.json';
 import plansData from '@/api/plans.json';
 
@@ -30,7 +31,8 @@ const apiService = {
   },
 
   fetchClusters() {
-    return client.get('/clusters').catch(() => clustersData);
+    return Promise.resolve(clustersNewData);
+    // return client.get('/clusters').catch(() => clustersData);
   },
 
   fetchStatistic() {
