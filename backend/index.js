@@ -54,7 +54,7 @@ app.get('/api/incidents', (req, res) => {
   const uri = 'mongodb+srv://ezee:ezee@cluster0.bngnr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-  client.connect(async err => {
+  client.connect(async () => {
     const collection = client.db('test_database').collection('test_tickets_table');
     const cursor = collection.find();
     const incidents = await cursor.toArray();
@@ -75,7 +75,7 @@ app.get('/api/incident', (req, res) => {
   const uri = 'mongodb+srv://ezee:ezee@cluster0.bngnr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-  client.connect(async err => {
+  client.connect(async () => {
     const collection = client.db('test_database').collection('test_tickets_table');
     const incident = await collection.findOne({ _id: ObjectId(id) });
 
